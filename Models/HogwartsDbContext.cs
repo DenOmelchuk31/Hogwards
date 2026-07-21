@@ -30,6 +30,8 @@ namespace HogwardsApp.Models {
 
         public virtual DbSet<Wizard> Wizards { get; set; }
 
+        public DbSet<WizardWandView> WizardWandViews { get; set; } = null!;
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -42,6 +44,9 @@ namespace HogwardsApp.Models {
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<WizardWandView>().ToView("vw_WizardWands");
+
             modelBuilder.Entity<AuditLog>(entity =>
             {
                 entity.HasKey(e => e.Id).HasName("PK__AuditLog__3214EC072F746CE8");
