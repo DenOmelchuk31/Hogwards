@@ -14,6 +14,8 @@ namespace HogwardsApp.Models
 
         public string? BloodStatus { get; set; }
 
+        public int Year { get; set; }
+
         public virtual ICollection<HousePoint> HousePoints { get; set; } = new List<HousePoint>();
 
         public virtual Wand? Wand { get; set; }
