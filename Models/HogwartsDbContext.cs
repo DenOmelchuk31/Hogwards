@@ -44,6 +44,9 @@ namespace HogwardsApp.Models {
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Wizard>()
+            .HasIndex(w => w.Name)
+            .IsUnique();
 
             modelBuilder.Entity<WizardWandView>().ToView("vw_WizardWands");
 
