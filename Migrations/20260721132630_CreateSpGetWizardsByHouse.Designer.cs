@@ -4,6 +4,7 @@ using HogwardsApp.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HogwardsApp.Migrations
 {
     [DbContext(typeof(HogwartsDbContext))]
-    partial class HogwartsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260721132630_CreateSpGetWizardsByHouse")]
+    partial class CreateSpGetWizardsByHouse
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

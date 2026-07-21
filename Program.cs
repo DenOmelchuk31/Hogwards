@@ -7,13 +7,26 @@ Console.InputEncoding = Encoding.UTF8;
 
 using var context = new HogwartsDbContext();
 
-var wizardWands = context.WizardWandViews.ToList();
+string house = "Грифіндор";
 
-Console.WriteLine("=== Чарівники та їхні палички (vw_WizardWands) ===");
-foreach (var item in wizardWands)
+var gryffindorWizards = context.Wizards
+    .FromSqlRaw("EXEC sp_GetWizardsByHouse @House = {0}", house)
+    .ToList();
+
+Console.WriteLine($"=== Чарівники факультету {house} (через sp_GetWizardsByHouse) ===");
+foreach (var w in gryffindorWizards)
 {
-    Console.WriteLine($"{item.WizardName} ({item.House}) — паличка: {item.WandMaterial}");
+    Console.WriteLine($"{w.Name} — рік вступу: {w.Year}");
 }
+
+
+//var wizardWands = context.WizardWandViews.ToList();
+
+//Console.WriteLine("=== Чарівники та їхні палички (vw_WizardWands) ===");
+//foreach (var item in wizardWands)
+//{
+//    Console.WriteLine($"{item.WizardName} ({item.House}) — паличка: {item.WandMaterial}");
+//}
 
 //var context = new HogwartsDbContext();
 
